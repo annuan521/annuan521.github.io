@@ -1,0 +1,14 @@
+.tagBox{
+    width: 300px;
+    height: 200px;
+    /* border: 1px solid #ccc; */
+}
+
+.box{
+    width: 50px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    /* line-height: 20px; */
+    display: inline-block;
+}
