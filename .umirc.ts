@@ -2,6 +2,13 @@ import { IConfig } from 'umi-types'; // ref: https://umijs.org/config/
 
 const config: IConfig = {
   treeShaking: true,
+  proxy: {
+    '/api': {
+      target: 'http://localhost:9093',
+      pathRewrite: { '^/api': '' },
+      changeOrigin: true
+    }
+  },
   routes: [
     {
       path: '/',

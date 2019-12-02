@@ -19,12 +19,39 @@ const data = [
   '我是tagfbdf',
   '我是tagbdbf',
   '我是tagdfbdf',
+  '我是tageeee',
+  '我是tagffff',
+  '我是taggggg',
+  '我是taghhhh',
+  '我是tagyyyy',
+  '我是tageeee',
+  '我是tagiuuu',
+  '我是tagbcbc',
+  '我是tagdbdf',
+  '我是tagdfbf',
+  '我是tagfbdf',
+  '我是tagbdbf',
+  '我是tagdfbdf',
+  '我是tageeee',
+  '我是tagffff',
+  '我是taggggg',
+  '我是taghhhh',
+  '我是tagyyyy',
+  '我是tageeee',
+  '我是tagiuuu',
+  '我是tagbcbc',
+  '我是tagdbdf',
+  '我是tagdfbf',
+  '我是tagfbdf',
+  '我是tagbdbf',
+  '我是tagdfbdf',
 ];
 export default function() {
   return (
-    <div>
+    <div style={{padding: 16}}>
       <Title text={'标签'} />
       <TagList tags={data} />
+      <TagList tags={data} label={'组件标签'}/>
     </div>
   );
 }

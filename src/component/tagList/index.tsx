@@ -20,21 +20,16 @@ export default class TagList extends React.Component<ITagProps, ITagState> {
 
   render() {
     const { tags, label } = this.props;
-    const labelTit = label || '标签:';
+    const labelTit = label || '标签';
 
     return (
       <div className={styles.label}>
-        {/* {label ? (
-          <span className={styles.title}>{label}</span>
-        ) : (
-          <span className={styles.title}>标签:</span>
-        )} */}
-
-        <span className={styles.title}>{labelTit}</span>
+        <span className={styles.title}>{labelTit}:</span>
         <div className={styles.tagBox}>
+       {/* tslint:disable-next-line: jsx-no-multiline-js */}
           {tags.map(tag => (
             <div className={styles.box}>
-              <Ellipis value={tag} maxWidth={60} />
+              <Ellipis value={tag} maxWidth={80} />
             </div>
           ))}
         </div>
