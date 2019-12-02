@@ -1,12 +1,12 @@
 import React from 'react';
 import {Button} from 'antd';
-
-type Kp = number | string | boolean;
+import styles from './index.css'
+type content = number | string | boolean;
 interface IProps {
     // 删除操作
     handleDeleteList: (text: any) => void;
     // 列表项信息
-    text: Kp;
+    text: content;
 }
 
 class Item extends React.Component<IProps>{
@@ -14,7 +14,7 @@ class Item extends React.Component<IProps>{
     super(props);
   }
 
-  handleDelete = (text: Kp) => {
+  handleDelete = (text: content) => {
     this.props.handleDeleteList(text);
   }
 
@@ -22,7 +22,7 @@ class Item extends React.Component<IProps>{
     const { text } = this.props;
     return(
       <div>
-        <span>{text}</span>
+        <span className={styles.text}>{text}</span>
         <Button type="primary" onClick = {()=>{this.handleDelete(text)}}>删除</Button>
       </div>
     )

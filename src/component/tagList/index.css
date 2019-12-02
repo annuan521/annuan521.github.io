@@ -1,14 +1,25 @@
-.tagBox{
-    width: 300px;
-    height: 200px;
-    /* border: 1px solid #ccc; */
+.label {
+  display: flex;
 }
 
-.box{
-    width: 50px;
-    height: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    /* line-height: 20px; */
-    display: inline-block;
+.title {
+  color: #000;
+  line-height: 40px;
+  margin-left: 10px;
+  flex:0 0 auto;
+}
+
+.tagBox {
+  /* ddf */
+}
+
+.box {
+  width: auto;
+  height: 20px;
+  border: 1px solid #000;
+  color: rgba(0,0,0.85);
+  font-weight: 500;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 10px 10px;
 }
