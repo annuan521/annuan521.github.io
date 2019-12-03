@@ -17,7 +17,7 @@ class ITagState {}
 export default class TagList extends React.Component<ITagProps, ITagState> {
   public state = new ITagState();
   handleClose = () => {};
-
+  
   render() {
     const { tags, label } = this.props;
     const labelTit = label || '标签';
@@ -37,3 +37,7 @@ export default class TagList extends React.Component<ITagProps, ITagState> {
     );
   }
 }
+
+
+
+// 增加全部字段 
