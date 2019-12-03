@@ -1,11 +1,11 @@
 import React from 'react';
-import List from '../../../component/List/List'
+import ImageList from '../../../component/ImageList/index'
 
 
 export default function() {
   return (
     <div>
-        imagelist
+        <ImageList />
     </div>
   );
 
