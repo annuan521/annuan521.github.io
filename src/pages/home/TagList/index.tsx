@@ -64,8 +64,8 @@ export default function() {
   return (
     <div style={{padding: 16}}>
       <Title text={'标签'} />
-      <TagList tags={data1} hasFold/>
-      <TagList checked tags={data} label={'组件标签'} hasFold onchange={(v) => {console.log(v);
+      <TagList tags={data1} hasFold={true}/>
+      <TagList checked={true} tags={data} label={'组件标签'} hasFold={true} onchange={(v) => {console.log(v);
       }}/>
     </div>
   );
