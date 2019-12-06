@@ -4,40 +4,114 @@
  */
 import React from 'react';
 import styles from './index.css';
-// import { Icon } from 'antd'
+import { Icon, Button } from 'antd';
 import Ellipis from '../../component/Ellipis';
 
 interface ITagProps {
   tags: any[];
   label?: string;
+  onchange?: (value: any) => void;
+  hasFold?: boolean; // 是否需要折叠
+  checked?: boolean; // 是否需要选中
 }
 
-class ITagState {}
+class ITagState {
+  showFold: boolean;
+  isFold: boolean;
+  checkedTag: any;
+}
 
 export default class TagList extends React.Component<ITagProps, ITagState> {
-  public state = new ITagState();
-  handleClose = () => {};
-  
-  render() {
-    const { tags, label } = this.props;
-    const labelTit = label || '标签';
+  public state: ITagState = {
+    showFold: false,
+    isFold: false,
+    checkedTag: this.props.tags[0],
+  };
+  public handleOpenFold = () => {
+    this.setState({ isFold: false });
+  };
 
+  public handleCloseFold = () => {
+    this.setState({ isFold: true });
+  };
+
+  public node = React.createRef();
+
+  public componentDidMount() {
+    if (this.props.hasFold) {
+      const { scrollHeight } = this.node.current;
+      console.log(scrollHeight, 'scrollHeight');
+
+      if (scrollHeight > 41) {
+        this.setState({ showFold: true });
+      }
+    }
+  }
+
+  handleClick = (tag: any) => {
+    if (this.props.onchange) {
+      this.props.onchange(tag);
+    }
+    this.setState({
+      checkedTag: tag,
+    });
+  };
+
+  render() {
+    const { tags, label,checked } = this.props;
+    const { showFold, isFold, checkedTag } = this.state;
+    const labelTitle = label || '标签';
+    const checkedTagStyle = {
+      background: '#1890ff',
+      color: '#fff',
+    };
+    const foldStyle = {
+      height: 41,
+      overflow: 'hidden',
+    };
+
+    const unFlodStyle = {
+      height: '100%',
+    };
+
+    const fold = showFold && isFold;
+
+  
     return (
-      <div className={styles.label}>
-        <span className={styles.title}>{labelTit}:</span>
-        <div className={styles.tagBox}>
-       {/* tslint:disable-next-line: jsx-no-multiline-js */}
+      <div className={styles.tagListWrap}>
+        <div className={styles.title}>{labelTitle}:</div>
+        <div ref={this.node} className={styles.tagBox} style={fold ? foldStyle : unFlodStyle}>
+          {/* tslint:disable-next-line: jsx-no-multiline-js */}
           {tags.map(tag => (
-            <div className={styles.box}>
+            <div
+              className={styles.tag}
+              onClick={() => this.handleClick(tag)}
+              style={(tag === checkedTag) && checked ? checkedTagStyle : {}}
+            >
               <Ellipis value={tag} maxWidth={80} />
             </div>
           ))}
         </div>
+
+        {showFold && (
+          <div>
+            {/* tslint:disable-next-line: jsx-no-multiline-js */}
+            {isFold ? (
+              <Button size="small" onClick={this.handleOpenFold}>
+                展开
+                <Icon type="down"></Icon>
+              </Button>
+            ) : (
+              <Button size="small" onClick={this.handleCloseFold}>
+                收起
+                <Icon type="up"></Icon>
+              </Button>
+            )}
+          </div>
+        )}
       </div>
     );
   }
 }
 
-
-
-// 增加全部字段 
+// 增加全部字段

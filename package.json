@@ -1,4 +1,5 @@
 {
+  "homepage": "https://annuan521.github.io",
   "private": true,
   "scripts": {
     "start": "umi dev",
