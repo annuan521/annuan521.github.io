@@ -51,6 +51,9 @@ export default class LeftMenu extends React.Component<IProps, IState> {
             <Menu.Item key="2">
               <Link to={'/home/ellipis'}>Ellipis</Link>
             </Menu.Item>
+            <Menu.Item key="5">
+              <Link to={'/home/expandTable'}>ExpandTable</Link>
+            </Menu.Item>
           </SubMenu>
           <SubMenu
             key="sub2"

@@ -13,6 +13,7 @@ interface ITagProps {
   onchange?: (value: any) => void;
   hasFold?: boolean; // 是否需要折叠
   checked?: boolean; // 是否需要选中
+  hasTitle?: boolean; // 是否需要标题
 }
 
 class ITagState {
@@ -39,8 +40,8 @@ export default class TagList extends React.Component<ITagProps, ITagState> {
 
   public componentDidMount() {
     if (this.props.hasFold) {
+      // 获取元素实际高度
       const { scrollHeight } = this.node.current;
-      console.log(scrollHeight, 'scrollHeight');
 
       if (scrollHeight > 41) {
         this.setState({ showFold: true });
@@ -58,7 +59,7 @@ export default class TagList extends React.Component<ITagProps, ITagState> {
   };
 
   render() {
-    const { tags, label,checked } = this.props;
+    const { tags, label, checked, hasTitle } = this.props;
     const { showFold, isFold, checkedTag } = this.state;
     const labelTitle = label || '标签';
     const checkedTagStyle = {
@@ -76,17 +77,16 @@ export default class TagList extends React.Component<ITagProps, ITagState> {
 
     const fold = showFold && isFold;
 
-  
     return (
       <div className={styles.tagListWrap}>
-        <div className={styles.title}>{labelTitle}:</div>
+        {hasTitle ? <div className={styles.title}>{labelTitle}:</div> : ''}
         <div ref={this.node} className={styles.tagBox} style={fold ? foldStyle : unFlodStyle}>
           {/* tslint:disable-next-line: jsx-no-multiline-js */}
           {tags.map(tag => (
             <div
               className={styles.tag}
               onClick={() => this.handleClick(tag)}
-              style={(tag === checkedTag) && checked ? checkedTagStyle : {}}
+              style={tag === checkedTag && checked ? checkedTagStyle : {}}
             >
               <Ellipis value={tag} maxWidth={80} />
             </div>

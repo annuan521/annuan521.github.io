@@ -32,6 +32,10 @@ const config: IConfig = {
               path: '/home/study',
               component: '../pages/study/index'
             },
+            {
+              path:'/home/expandTable',
+              component:'../pages/home/ExpandTable/index'
+            }
           ],
         },
 
