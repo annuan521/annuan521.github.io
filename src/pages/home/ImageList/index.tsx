@@ -5,7 +5,7 @@ import data from './data.ts'
 export default function() {
   return (
     <div>
-        <ImageList data={data.data} />
+        <ImageList data={data.data} hasSelect={true} />
     </div>
   );
 

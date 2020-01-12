@@ -7,56 +7,74 @@
 import React from 'react';
 import styles from './index.css';
 import { Checkbox } from 'antd';
+import Ellipis from '../Ellipis'
 const CheckboxGroup = Checkbox.Group;
 
 interface IProps {
+  hasSelect?: boolean;
   data: any[];
-  onchange: (values: any) => void;
-  hasCheckedAll: boolean; // 是否需要全选
+  onchange?: (values: any) => void;
 }
 class IState {
   checkedList: any;
-  indeterminate: boolean;
-  checkAll: boolean;
-  id: string = '';
 }
-const plainOptions = ['1', '2', '3','4'];
-const defaultCheckedList = ['1', '2', '3'];
+
 export default class ImageList extends React.Component<IProps, IState> {
-  // public state = new IState();
   public state: IState = {
-    checkedList: defaultCheckedList,
-    indeterminate: true,
-    checkAll: false,
+    checkedList: this.props.data,
   };
 
-  onCheckAllChange = e => {
-    const { checkedList, indeterminate, checkAll } = this.state;
-    // console.log(e, 'eeeeeeee');
-    this.setState({
-      checkedList: e.target.checked ? plainOptions : [],
-      indeterminate: false,
-      checkAll: e.target.checked,
-    });
-  };
 
-  onChange = (checkedList) => {
-    console.log(checkedList, 'checkedList');
-    
-    // const { checkedList,indeterminate ,checkAll} = this.state;
+  onChange = (checkedList: any) => {
+
     this.setState({
       checkedList,
-      indeterminate: !!checkedList.length && checkedList.length < plainOptions.length,
-      checkAll: checkedList.length == plainOptions.length,
+    }, () => {
+      if (this.props.onchange)
+        this.props.onchange(checkedList)
     });
-    // 1111,e, e.target.value,
-    // console.log(checkedValues);
   };
+
+  renderHasSelect = () => {
+    const { data } = this.props;
+    return (
+      <CheckboxGroup onChange={this.onChange}>
+        {data.map(v => (
+          <Checkbox value={v} >
+            <div>
+              <Ellipis value={v.fromPageTitleEnc} maxWidth={90} />
+              <div style={{ width: 100, height: 150 }}>
+                <img style={{ width: '100%', height: '100%' }} src={v.middleURL} />
+              </div>
+            </div>
+          </Checkbox>
+        )
+        )}
+      </CheckboxGroup>
+    )
+  }
+
+  renderDefaultImgList = () => {
+    const { data } = this.props;
+    return (
+      <div>
+        {data.map(v => (
+          <div>
+            <Ellipis value={v.fromPageTitleEnc} maxWidth={90} />
+            <div style={{ width: 100, height: 150 }}>
+              <img style={{ width: '100%', height: '100%' }} src={v.middleURL} />
+            </div>
+          </div>
+        )
+        )}
+      </div>
+    )
+
+  }
 
   render() {
     const { data } = this.props;
     const imgListLength = data.length || 0;
-    // console.log(this.state.imgId, 'ghjkjhghjkjhg');
     return (
       <div
         style={{
@@ -67,38 +85,9 @@ export default class ImageList extends React.Component<IProps, IState> {
         }}
       >
         <div style={{ margin: ' 10px 0' }}>图片总数：{imgListLength}</div>
-        <div style={{ borderBottom: '1px solid #E9E9E9', paddingBottom: '8px' }}>
-          <Checkbox
-            indeterminate={this.state.indeterminate}
-            checked={this.state.checkAll}
-            onChange={this.onCheckAllChange}
-          >
-            全选
-          </Checkbox>
-        </div>
-        <div className={styles.box}>
-          <CheckboxGroup
-          options={plainOptions}
-          value={this.state.checkedList}
-          onChange={this.onChange}
-          ></CheckboxGroup>
-          {/* {data.map(v => (
-            <div className={styles.imgBox}>
-              <span>
-                <CheckboxGroup
-                onChange={this.onChange}>
-                <Checkbox
-                  value={v.pageNum}
-                  // defaultChecked={60}
-                  // onChange={this.onChange}
-                ></Checkbox>
-                </CheckboxGroup>
-              </span>
-              <img src={v.middleURL} alt="" />
-              <div>{v.pageNum}</div>
-            </div>
-          ))} */}
-        </div>
+        {
+          this.props.hasSelect ? this.renderHasSelect() : this.renderDefaultImgList()
+        }
       </div>
     );
   }
