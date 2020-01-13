@@ -11,10 +11,15 @@ import Ellipis from '../Ellipis'
 const CheckboxGroup = Checkbox.Group;
 
 interface IProps {
+  // 是否支持多选
   hasSelect?: boolean;
+  // 数据
   data: any[];
+  // 多选结果返回
   onchange?: (values: any) => void;
+  // 多选支持最多选几个
   max?: number;
+  // 多选支持最多选几个时 必须传递一个主键值
   imgKey?: string;
 }
 class IState {
