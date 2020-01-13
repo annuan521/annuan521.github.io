@@ -3,7 +3,6 @@ import Ellipis from '../../../component/Ellipis';
 import styles from './index.css';
 import { Table } from 'antd';
 // import ReactMarkdown from '../../../../node_modules/react-md';
-import Md from "./index.md";
 import Title from '../../../component/Title';
 
 const exampleStyle = {
@@ -82,7 +81,6 @@ export default function() {
       </div>
       <div>
         {/* <Title level={2} text={'API'} />
-
         <div className={styles.content}>
           <Ellipis value="青笺画卿颜,鸢语慕君年" maxWidth={120} />
         </div> */}

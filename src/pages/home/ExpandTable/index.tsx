@@ -2,7 +2,7 @@ import React from 'react';
 import ExpandTable from '../../../component/ExpandTable';
 
 export default function() {
-  const onClick = (e: React.MouseEvent, record) => {
+  const onClick = (e: React.MouseEvent, record: any) => {
     e.stopPropagation();
     e.preventDefault();
     console.log('record', record);
@@ -15,7 +15,7 @@ export default function() {
       title: 'Action',
       dataIndex: '',
       key: 'x',
-      render: record => <a onClick={e => onClick(e, record)}>Delete</a>,
+      render: (record: any) => <a onClick={e => onClick(e, record)}>Delete</a>,
     },
   ];
 
@@ -43,14 +43,15 @@ export default function() {
     },
   ];
   return (
-    <div style={{height:'100px',overflow:'hidden'}}>
+    <div>
+      {/* style={{height:'100px',overflow:'hidden'}} */}
       <ExpandTable
         columns={columns}
         data={data}
         onChange={(v, selectedRowKeys) => console.log(v, selectedRowKeys, 'father')}
-        tableOptions={{
-          scroll: { y: 100 },
-        }}
+        // tableOptions={{
+        //   scroll: { y: 100 },
+        // }}
       />
     </div>
   );

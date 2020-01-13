@@ -7,7 +7,7 @@
 import React from 'react';
 import styles from './index.css';
 import { Checkbox } from 'antd';
-import Ellipis from '../Ellipis'
+import Ellipis from '../Ellipis';
 const CheckboxGroup = Checkbox.Group;
 
 interface IProps {
@@ -24,21 +24,22 @@ export default class ImageList extends React.Component<IProps, IState> {
     checkedList: this.props.data,
   };
 
-
   onChange = (checkedList: any) => {
-
-    this.setState({
-      checkedList,
-    }, () => {
-      if (this.props.onchange)
-        this.props.onchange(checkedList)
-    });
+    this.setState(
+      {
+        checkedList,
+      },
+      () => {
+        if (this.props.onchange) this.props.onchange(checkedList);
+      },
+    );
   };
 
   renderHasSelect = () => {
     const { data } = this.props;
     return (
       <CheckboxGroup onChange={this.onChange}>
+        {/* tslint:disable-next-line: jsx-no-multiline-js */}
         {data.map(v => (
           <Checkbox value={v} >
             <div>
@@ -52,12 +53,30 @@ export default class ImageList extends React.Component<IProps, IState> {
         )}
       </CheckboxGroup>
     )
-  }
+    /* tslint:disable-next-line: jsx-no-multiline-js */
+    // <CheckboxGroup onChange={this.onChange}>
+    //   {data.map((v, index) => {
+    //     let disabled = false;
+    //     if (this.state.checkedList.length > 4) {
+    //       disabled = true;
+    //       this.state.checkedList.map(item => {
+    //         if ((v.pageNum = item.pageNum)) {
+    //           disabled = false;
+    //         }
+    //       });
+    //     }
+    //     return (
+
+    //     )
+    //   })}
+    // </CheckboxGroup>;
+  };
 
   renderDefaultImgList = () => {
     const { data } = this.props;
     return (
       <div>
+        {/* tslint:disable-next-line: jsx-no-multiline-js */}
         {data.map(v => (
           <div>
             <Ellipis value={v.fromPageTitleEnc} maxWidth={90} />
@@ -65,12 +84,10 @@ export default class ImageList extends React.Component<IProps, IState> {
               <img style={{ width: '100%', height: '100%' }} src={v.middleURL} />
             </div>
           </div>
-        )
-        )}
+        ))}
       </div>
-    )
-
-  }
+    );
+  };
 
   render() {
     const { data } = this.props;
@@ -85,9 +102,8 @@ export default class ImageList extends React.Component<IProps, IState> {
         }}
       >
         <div style={{ margin: ' 10px 0' }}>图片总数：{imgListLength}</div>
-        {
-          this.props.hasSelect ? this.renderHasSelect() : this.renderDefaultImgList()
-        }
+        {/* tslint:disable-next-line: jsx-no-multiline-js */}
+        {this.props.hasSelect ? this.renderHasSelect() : this.renderDefaultImgList()}
       </div>
     );
   }
