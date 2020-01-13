@@ -14,6 +14,8 @@ interface IProps {
   hasSelect?: boolean;
   data: any[];
   onchange?: (values: any) => void;
+  max?: number;
+  imgKey?: string;
 }
 class IState {
   checkedList: any;
@@ -36,11 +38,25 @@ export default class ImageList extends React.Component<IProps, IState> {
   };
 
   renderHasSelect = () => {
-    const { data } = this.props;
+    const { data, max=data.length,imgKey } = this.props;
+    const {checkedList} =this.state;
+    const realMax = max - 1;
     return (
       <CheckboxGroup onChange={this.onChange}>
-        {data.map(v => (
-          <Checkbox value={v} >
+        {data.map(v =>{ 
+          let disable = false;
+          if(imgKey){ 
+          if(checkedList.length > realMax){
+            disable = true;
+            checkedList.map((item:any)=>{ 
+              if(v[imgKey] === item[imgKey]){
+                disable=false
+              } 
+            })
+          }
+        }
+          return (
+          <Checkbox value={v} disabled={disable}>
             <div>
               <Ellipis value={v.fromPageTitleEnc} maxWidth={90} />
               <div style={{ width: 100, height: 150 }}>
@@ -48,7 +64,7 @@ export default class ImageList extends React.Component<IProps, IState> {
               </div>
             </div>
           </Checkbox>
-        )
+        )}
         )}
       </CheckboxGroup>
     )
