@@ -4,7 +4,7 @@
  *
  **/
 
-import React from 'react';
+import React, { ReactFragment, ReactNode } from 'react';
 import styles from './index.css';
 import { Checkbox } from 'antd';
 import Ellipis from '../Ellipis'
@@ -21,6 +21,8 @@ interface IProps {
   max?: number;
   // 多选支持最多选几个时 必须传递一个主键值
   imgKey?: string;
+  // 图片 底部自定义区域 并传出当前图片所有数据
+  renderFooter?: (value:any) => ReactNode
 }
 class IState {
   checkedList: any;
@@ -67,6 +69,7 @@ export default class ImageList extends React.Component<IProps, IState> {
               <div style={{ width: 100, height: 150 }}>
                 <img style={{ width: '100%', height: '100%' }} src={v.middleURL} />
               </div>
+              {this.props.renderFooter&&this.props.renderFooter(v)}
             </div>
           </Checkbox>
         )}
