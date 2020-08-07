@@ -65,9 +65,10 @@ const config: IConfig = {
         },
       },
     ],
+    'umi-plugin-gh-pages',
   ],
-  base: '/annuan521.github.io',
-  publicPath:'/annuan521.github.io'
+  base: '/',
+  publicPath:'/'
 };
 export default config;
 
