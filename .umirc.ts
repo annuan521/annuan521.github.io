@@ -66,6 +66,8 @@ const config: IConfig = {
       },
     ],
   ],
+  base: '/annuan521.github.io',
+  publicPath:'/annuan521.github.io'
 };
 export default config;
 
