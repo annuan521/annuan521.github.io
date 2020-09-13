@@ -2,7 +2,20 @@ import { IConfig } from 'umi-types'; // ref: https://umijs.org/config/
 
 const config: IConfig = {
   treeShaking: true,
- 
+   
+  proxy: {
+    '/api': {
+      target: 'http://localhost:8084',
+      pathRewrite: { '^/api': '' },
+      changeOrigin: true
+    }
+  },
+   
+  cssLoaderOptions:{
+    localIdentName:'[local]'
+  },
+    "sass":{ },
+  
   routes: [
     {
       path: '/',
@@ -10,7 +23,9 @@ const config: IConfig = {
       routes: [
         {
           path: '/home',
-          component: '../pages/index',
+         
+       
+
           routes: [
             {
               path: '/home/list',
@@ -46,6 +61,7 @@ const config: IConfig = {
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     [
       'umi-plugin-react',
+      
       {
         antd: true,
         dva: {
@@ -67,6 +83,9 @@ const config: IConfig = {
     ],
     'umi-plugin-gh-pages',
   ],
+ 
+   
+   
   base: '/',
   publicPath:'/'
 };
