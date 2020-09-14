@@ -22,8 +22,8 @@ const Ellipis: React.FunctionComponent<IProps> = ({ value, style, maxWidth }) =>
         }
     }, []);
     const text = (
-        <div className = {styles.box} ref = { textNode }
-            style = {{ ...style, maxWidth}}>
+        <div className={styles.box} ref={textNode}
+            style={{ ...style, maxWidth}}>
             {value}
         </div>
     )
