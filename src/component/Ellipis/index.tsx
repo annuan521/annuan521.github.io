@@ -1,11 +1,11 @@
 import { Tooltip } from 'antd';
-import styles from './index.css';
+import styles from './index.less';
 import * as React from 'react';
 
 const { useState, useEffect } = React;
 interface IProps {
     value: string | number | boolean;
-    style?: any; // React.cssProperties;
+    style?: React.CSSProperties;
     maxWidth?: number;
 }
 

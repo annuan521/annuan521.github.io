@@ -1,10 +1,9 @@
 import React from 'react';
 import Ellipis from '../../../component/Ellipis';
-import styles from './index.css';
 import { Table } from 'antd';
-// import ReactMarkdown from '../../../../node_modules/react-md';
-import Md from "./index.md";
 import Title from '../../../component/Title';
+import styles from './index.less';
+
 
 const exampleStyle = {
   color: '#fff',
@@ -71,7 +70,7 @@ export default function() {
     <div className={styles.ellipisContainer}>
       <Title level={2} text={'省略号'} />
       <div className={styles.content}>文本超出省略，鼠标悬浮显示完整文本</div>
-      {/* <div>省略</div> */}
+     
       <Title level={2} text={'已省略'} />
       <div className={styles.playground}>
         <Ellipis value={exampleValue} maxWidth={100} style={exampleStyle} />
@@ -81,22 +80,12 @@ export default function() {
         <Ellipis value={exampleValue} maxWidth={400} style={exampleStyle} />
       </div>
       <div>
-        {/* <Title level={2} text={'API'} />
-
-        <div className={styles.content}>
-          <Ellipis value="青笺画卿颜,鸢语慕君年" maxWidth={120} />
-        </div> */}
+       
         <Title level={2} text={'Ellipis API'} />
         <div style={{ padding: '20px' }}>
           <Table dataSource={data} columns={columns} pagination={false} />
         </div>
-        {/* <ReactMarkdown
-        source={Md}
-            escapeHtml={false}
-            renderers={{
-              code: codeBlock,
-            }}
-            /> */}
+    
       </div>
     </div>
   );

@@ -17,8 +17,8 @@ interface ITagProps {
 }
 
 class ITagState {
-  showFold: boolean;
-  isFold: boolean;
+  showFold: boolean = false;
+  isFold: boolean = false;
   checkedTag: any;
 }
 
@@ -42,7 +42,6 @@ export default class TagList extends React.Component<ITagProps, ITagState> {
     if (this.props.hasFold) {
       // 获取元素实际高度
       const { scrollHeight } = this.node.current;
-
       if (scrollHeight > 41) {
         this.setState({ showFold: true });
       }

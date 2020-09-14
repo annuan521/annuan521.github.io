@@ -93,8 +93,7 @@ function Cascader(props: {
   };
 
   // 初始化cascadeList
-  useEffect(() => {
-      
+  useEffect(() => { 
     if (isLabel(firstList)) {
       setLabels(firstList);
     } else {
@@ -105,9 +104,7 @@ function Cascader(props: {
   // 标签树
   const getCascadeGroupsProps = () => ({
     // 点击分组
-    async onItemClick(idx: any, id: any) {
-        console.log(idx,'-----idx',id);
-        
+    async onItemClick(idx: any, id: any) { 
       setSelectIds(selectIds.slice(0, idx).concat(id));
       const list = await getChildren(id);
       
@@ -129,15 +126,10 @@ function Cascader(props: {
     const getValue = (item: any )=> item.id;
     const patch = pathList(getValue, getLabelStr);
     const labelsSet = new Set(labels.map(getValue));
-console.log(value,'--------value');
-
     return {
       onChange(ids: any) {
         const idSet = new Set(ids);
-        
         const selectLabels = labels.filter(item => idSet.has(getValue(item)));
-        // console.log(selectLabels, '------------selectLabels ',value);
-        
         onChange(patch(selectLabels, labels, value));
       },
       options: labels,

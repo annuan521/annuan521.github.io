@@ -14,7 +14,31 @@ const config: IConfig = {
   cssLoaderOptions:{
     localIdentName:'[local]'
   },
-    "sass":{ },
+  lessLoaderOptions:{
+    module: {
+      rules: [
+        {
+          test: /\.less$/,
+          use: [
+            {
+              loader: 'style-loader',
+            },
+            {
+              loader: 'css-loader',
+            },
+            {
+              loader: 'less-loader',
+              options: {
+                lessOptions: {
+                  strictMath: true,
+                },
+              },
+            },
+          ],
+        },
+      ],
+    },
+  },
   
   routes: [
     {
@@ -22,33 +46,31 @@ const config: IConfig = {
       component: '../layouts/index',
       routes: [
         {
-          path: '/home',
-         
-       
-
+          path: '/',
+          component: '../pages/index',
           routes: [
             {
-              path: '/home/list',
+              path: '/list',
               component: '../pages/home/List/index'
             },
             {
-              path: '/home/imageList',
+              path: '/imageList',
               component: '../pages/home/ImageList/index'
             },
             {
-              path: '/home/tagList',
+              path: '/tagList',
               component: '../pages/home/TagList/index'
             },
             {
-              path: '/home/ellipis',
+              path: '/ellipis',
               component: '../pages/home/Ellipis/index'
             },
             {
-              path: '/home/study',
+              path: '/study',
               component: '../pages/study/index'
             },
             {
-              path:'/home/expandTable',
+              path:'/expandTable',
               component:'../pages/home/ExpandTable/index'
             }
           ],
