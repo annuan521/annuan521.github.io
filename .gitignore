@@ -17,3 +17,4 @@
 .umi
 .umi-production
 .vscode
+create table users (id int(32) auto_increment primary key,username varchar(32) NOT NULL,password varchar(32) NOT NULL;
