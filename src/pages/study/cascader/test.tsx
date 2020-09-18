@@ -4,7 +4,7 @@ import CascadeTags from './CascadeTags';
 import CascadeLabels from './CascadeLabels';
 import CascadeGroups from './CascadeGroups';
 import Container from './Container';
-import './index.css';
+import './index.less';
 
 const { useState, useEffect } = React;
 
@@ -28,12 +28,11 @@ const pathList = (getValue: any, getLabelStr: any) => (changeList:any, listAll:a
 
 const isLabel = (list: any) => {
    
- // _.get(_.first(list), 'isLeaf') === 1
     return list[0].isleaf === 1
 };
 
 interface Label {
-    parentId: string
+  parentId: string
   label: string;
   value: number;
   children?: Label[];

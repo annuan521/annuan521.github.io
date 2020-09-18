@@ -3,14 +3,14 @@ import Container from './Container'
 import CascaderGroup from './CascadeGroups'
 import Test from './test'
 import { proData  } from './provdata'
-import './index.css'
+import './index.less'
 
 interface IProps {
 
 }
 class IState {
     lv1Data: any[] = []
-
+    selected: any
 }
 
 export default class Page extends React.Component<IProps, IState>{
@@ -45,7 +45,7 @@ export default class Page extends React.Component<IProps, IState>{
         return (
             <div className="play-wrap" >
       
-                <Test firstList={proData} fetch={this.handleFetch}  onChange={(val)=>{console.log(val,'----------valval');
+                <Test firstList={proData} fetch={this.handleFetch} value={this.state.selected}  onChange={(val)=>{this.setState({selected: val});console.log(val,'----------valval');
                 }}/>
             </div>)
     }
