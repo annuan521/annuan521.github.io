@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Container from './Container'
-import CascaderGroup from './CascadeGroups'
+
 import Test from './test'
 import { proData  } from './provdata'
 import './index.less'
@@ -34,7 +33,7 @@ export default class Page extends React.Component<IProps, IState>{
                 .then(data => resolve(data))
                 .catch(err => reject(err))
         })
-        console.log(data,'-------ar');
+       
         return data.data
     }
 
@@ -45,7 +44,7 @@ export default class Page extends React.Component<IProps, IState>{
         return (
             <div className="play-wrap" >
       
-                <Test firstList={proData} fetch={this.handleFetch} value={this.state.selected}  onChange={(val)=>{this.setState({selected: val});console.log(val,'----------valval');
+                <Test firstList={proData} fetch={this.handleFetch} value={this.state.selected}  onChange={(val)=>{this.setState({selected: val})
                 }}/>
             </div>)
     }

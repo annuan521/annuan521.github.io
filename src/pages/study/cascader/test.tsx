@@ -15,6 +15,8 @@ const pathList = (getValue: any, getLabelStr: any) => (changeList:any, listAll:a
   const delListSet = new Set(delList.map(getValue));
   const newTarget = target.filter((item:any) => !delListSet.has(getValue(item)));
   const newTargetSet = new Set(newTarget.map(getValue));
+ 
+  
   const addList = changeList
     .filter((item:any) => !newTargetSet.has(getValue(item)))
     .map((data:any)=> ({
@@ -123,16 +125,19 @@ function Cascader(props: {
   // 标签名称
   const getCascadeLabelsProps = () => {
     const getValue = (item: any )=> item.id;
+    const getDefValue = (item: any )=> item.value;
     const patch = pathList(getValue, getLabelStr);
     const labelsSet = new Set(labels.map(getValue));
+  
     return {
       onChange(ids: any) {
         const idSet = new Set(ids);
-        const selectLabels = labels.filter(item => idSet.has(getValue(item)));
+        const selectLabels = labels.filter(item => {
+          return idSet.has(getValue(item))});
         onChange(patch(selectLabels, labels, value));
       },
       options: labels,
-      checkedList: value.map(getValue).filter(val => labelsSet.has(val)),
+      checkedList: value.map(getDefValue).filter(val => labelsSet.has(val)),
     };
   };
   // 已选标签

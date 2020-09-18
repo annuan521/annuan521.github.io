@@ -3,22 +3,24 @@ import { Checkbox } from 'antd';
 
 const { Group } = Checkbox;
 
-export default function CascadeLabels(props) {
-  const { checkedList, onChange, options } = props;
+interface IProps {
+  checkedList: any[]
+   onChange:(val: any[])=> void;
+    options:any[]
+}
 
-  const onCheckAllChange = e => {
-      console.log(options.map(({ id }) => id),'opt');
-      
+const CascadeLabels: React.FC<IProps>=({ checkedList, onChange, options }) =>{
+
+ 
+  const onCheckAllChange = (e: any) => {   
     onChange(e.target.checked ? options.map(({ id }) => id) : []);
   };
 
-  const onGroupChange = checkedValues => {
-      console.log(checkedValues,'--------checkedValues');
-      
+  const onGroupChange = (checkedValues: any) => {   
     onChange(checkedValues);
   };
 
-  const checkAll = checkedList.length && checkedList.length === options.length;
+  const checkAll = checkedList.length && checkedList.length === options.length ;
 
   const indeterminate = !!checkedList.length && !checkAll;
   if (!options.length) return null;
@@ -31,7 +33,7 @@ export default function CascadeLabels(props) {
       </div>
       <Group
        onChange={onGroupChange} 
-    //   value={checkedList}
+      value={checkedList}
     >
         {options.map(item => (
           <div key={item.value}>
@@ -42,3 +44,4 @@ export default function CascadeLabels(props) {
     </div>
   );
 }
+export default CascadeLabels;
